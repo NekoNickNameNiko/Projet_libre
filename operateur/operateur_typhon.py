@@ -1,4 +1,4 @@
-from Operateur import operateur
+from operateur import operateur
 import pygame
 import os
 
