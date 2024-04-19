@@ -2,7 +2,7 @@ import pygame
 import pygame_gui
 import sys
 import os
-"test test "
+
 class Enemy(pygame.sprite.Sprite):
 
     def __init__(self, image, path):
