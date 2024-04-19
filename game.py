@@ -1,5 +1,5 @@
 import pygame
-from operateur.operateur_typhon import typhon
+from operateur.operateur_typhon import*
 
 class Game:
     """
@@ -13,7 +13,8 @@ class Game:
         self.operater = [typhon(300,300)]
         self.lives = 3
         self.dp = 5
-        self.bg = pygame.image.load("map.png")
+        self.bg = pygame.image.load("map.png",'bg.png')
+        self.bg = pygame.transform.scale(self.bg,(self.weights,self.height))
         self.clicks = []
 
     def run(self):
@@ -30,9 +31,8 @@ class Game:
                     run = False
 
                 pos = pygame.mouse.get_pos()
-
                 if event.type == pygame.MOUSEBUTTONDOWN:
-                    pass
+                    self.clicks.append(pos)
             
             self.draw()
         pygame.quit()
@@ -42,9 +42,10 @@ class Game:
         Déssine les éléments du jeu
         """
         self.fenetre.blit(self.bg,(0,0))
-        pygame.display.update()
-
-    #dessiner les opérateurs
+        
+        for p in self.clicks:
+            pygame.draw.circle(self.fenetre, (255,0,0),(p[0],p[1]),5,0),
+        #dessiner les opérateurs
         for op in self.operater :
             op.draw(self.fenetre)
 
@@ -52,3 +53,4 @@ class Game:
 
 Game = Game()
 Game.run()
+
