@@ -27,7 +27,7 @@ class operateur_base:
         
         if self.animation_count >= len(self.operator_img):
             self.animation_count = 0
-        fenetre.blit(self.img, (self.x-self.img.get_width()//2, self.y-self.img.get_height()//2))
+        fenetre.blit(self.img, (self.x-pygame.Surface.get_width(self.img)//2, self.y-pygame.Surface.get_height(self.img)//2))
 
     
     def click(self, X, Y):
