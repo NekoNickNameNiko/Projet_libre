@@ -25,7 +25,7 @@ class Game:
         clock = pygame.time.Clock()
 
         while run:
-            clock.tick(60)
+            clock.tick(20)
             for event in pygame.event.get():
                 if event.type == pygame.QUIT :
                     run = False
@@ -47,7 +47,7 @@ class Game:
             pygame.draw.circle(self.fenetre, (255,0,0),(p[0],p[1]),5,0),
         #dessiner les opérateurs
         for op in self.operater :
-            op.draw(self.fenetre)
+            op.draw(self.fenetre,400)
 
         pygame.display.update()
 
