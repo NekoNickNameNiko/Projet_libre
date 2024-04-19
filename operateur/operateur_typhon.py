@@ -9,24 +9,24 @@ for x in range(1,25):
     if x < 10:
         typhon_imgs_front.append(pygame.transform.scale(
             pygame.image.load(
-                os.path.join("img_operator/front-Attack_Loop-x1/Attack_Loop-x1 0"+ str(x) + ".png")).convert_alpha(),
+                os.path.join("img_operator/typhon_ilg/front-Attack_Loop-x1/Attack_Loop-x1 0"+ str(x) + ".png")).convert_alpha(),
             (180, 180)))
     else:
         typhon_imgs_front.append(pygame.transform.scale(
             pygame.image.load(
-                os.path.join("img_operator/front-Attack_Loop-x1/Attack_Loop-x1 "+ str(x) + ".png")).convert_alpha(),
+                os.path.join("img_operator/typhon_ilg/front-Attack_Loop-x1/Attack_Loop-x1 "+ str(x) + ".png")).convert_alpha(),
             (180, 180)))
 
 for x in range(1,25):
     if x < 10:
         typhon_imgs_back.append(pygame.transform.scale(
             pygame.image.load(
-                os.path.join("img_operator/back-Attack_Loop-x1 (3)/提丰-默认-背面-Attack_Loop-x1 (3)_00"+ str(x) + ".png")).convert_alpha(),
+                os.path.join("img_operator/typhon_ilg/back-Attack_Loop-x1 (3)/提丰-默认-背面-Attack_Loop-x1 (3)_00"+ str(x) + ".png")).convert_alpha(),
             (180, 180)))
     else:
         typhon_imgs_back.append(pygame.transform.scale(
             pygame.image.load(
-                os.path.join("img_operator/back-Attack_Loop-x1 (3)/提丰-默认-背面-Attack_Loop-x1 (3)_0"+ str(x) + ".png")).convert_alpha(),
+                os.path.join("img_operator/typhon_ilg/back-Attack_Loop-x1 (3)/提丰-默认-背面-Attack_Loop-x1 (3)_0"+ str(x) + ".png")).convert_alpha(),
             (180, 180)))
 
 class typhon(operateur_base):
