@@ -16,6 +16,8 @@ class operateur_base:
         self.deployed = False
         self.operator_img = []
 
+
+    #Dessine l'opérateur
     def draw(self, fenetre):
         """
         draws the operator
@@ -29,44 +31,34 @@ class operateur_base:
             self.animation_count = 0
         fenetre.blit(self.img, (self.x-pygame.Surface.get_width(self.img)//2, self.y-pygame.Surface.get_height(self.img)//2))
 
-    
+    def draw_radiu(self,fenetre):
+        if self.selected == True:
+            surface = pygame.Surface((self.range * 4, self.range * 4), pygame.SRCALPHA, 32)
+
+            pygame.draw.circle(surface, (128, 128, 128, 100), (self.range, self.range), self.range, 0)
+            fenetre.blit(surface, (self.x - self.range, self.y - self.range))
+
     def click(self, X, Y):
-        """
-        returns if tower has been clicked on
-        and selects tower if it was clicked
-        :param X: int
-        :param Y: int
-        :return: bool
-        """
         img = self.operator_img
-        if X <= self.x - img.get_width()//2 + self.width and X >= self.x - img.get_width()//2:
-            if Y <= self.y + self.height - img.get_height()//2 and Y >= self.y - img.get_height()//2:
+        if X <= self.x - pygame.Surface.get_width(img)//2 + self.width and X >= self.x - pygame.Surface.get_width(img)//2:
+            if Y <= self.y + self.height - pygame.Surface.get_height(img)//2 and Y >= self.y - pygame.Surface.get_height(img)//2:
                 return True
         return False
+        
     
+    def check_deployed(self):
+        return self.deployed == True
+
     def remove(self):
         self.deployed = False
-        return False
+        self.cd = 60
+        return self.deployed, self.cd
     
-    def move(self):
-        pass
+    def move(self,x,y):
+        self.x = x
+        self.y = y
+        self.menu.x = x
+        self.menu.y = y
+        self.menu.update()
 
 
-
-"""
-test = operateur(0,0,867,70,1310,23)
-
-
-fenetre = pygame.display.set_mode((1200, 700))
-bg = pygame.image.load("map.png",'bg.png')
-
-run = True
-clock = pygame.time.Clock()
-
-while run:
-    clock.tick(60)
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT :
-            run = False
-    test.draw(fenetre)
-pygame.quit()"""
