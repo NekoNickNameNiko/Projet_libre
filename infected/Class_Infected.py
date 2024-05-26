@@ -39,8 +39,9 @@ class Infected(pygame.sprite.Sprite):
             self.move()
 
         # Fait appel à la méthode remove (supprime l'infecté) et draw_health_Bar (affichage barre de vie)
-        self.remove()
         self.draw_health_Bar(fenetre)
+        self.remove()
+        
 
         # Fait appel aux méthodes permettant de défiler les images de déplacement ou de mort selon le type de l'infecté
         # Fait appel aux méthodes permettant d'utiliser les compétences de chaque infectés selon le type de l'infecté

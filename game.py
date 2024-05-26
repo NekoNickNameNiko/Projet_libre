@@ -31,16 +31,29 @@ steward_icon = pygame.transform.scale(pygame.image.load(os.path.join("game_img/i
 band = pygame.Surface((100, 50), pygame.SRCALPHA)
 band_color = (0, 0, 0, 128)  # Bande Noir à 50% de transparence
 band.fill(band_color)
-
 # Afficher le nombre de vie restant au joueur
 band_2 = pygame.Surface((150, 50), pygame.SRCALPHA)
 band_2_color = (0, 0, 0, 128)  # Bande Noir à 50% de transparence
 band_2.fill(band_2_color)
-
 # Afficher les coins de déploiement (dp)
 band_3 = pygame.Surface((170, 90), pygame.SRCALPHA)
 band_3_color = (0, 0, 0, 128)  # Bande Noir à 50% de transparence
 band_3.fill(band_3_color)
+
+# Affiche win ou lose
+band_lose = pygame.Surface((1200, 200), pygame.SRCALPHA)
+band_lose_color = (0, 0, 0, 128)  # Bande Noir à 50% de transparence
+text_lose = pygame.font.Font(None, 100).render("Defeat will only make you stronger", True, (255, 255, 255))
+band_lose.fill(band_lose_color)
+text_rect_lose = text_lose.get_rect()
+text_rect_lose.center = 1200/2, 425
+
+band_win = pygame.Surface((1200, 200), pygame.SRCALPHA)
+band_win_color = (0, 0, 0, 128)  # Bande Noir à 50% de transparence
+text_win = pygame.font.Font(None, 100).render("Well play, you are the best", True, (255, 255, 255))
+band_win.fill(band_win_color)
+text_rect_win = text_win.get_rect()
+text_rect_win.center = 1200/2, 425
 
 text1 = pygame.font.Font(None, 50).render("Dp:", True, (255, 255, 255))
 
@@ -54,7 +67,6 @@ class Game(pygame.sprite.Sprite):
         #---------------------------------------------------------
         #Paramètre du jeu
         self.fenetre = fenetre
-
         
         self.lives = 3
         self.lose = False
@@ -241,7 +253,7 @@ class Game(pygame.sprite.Sprite):
 
     # METHODE: Dessine les différents éléments (infectés,projectiles,opérateur,time,dp,life)
     def draw(self):
-        global band,band_2,band_3,text1
+        global band,band_2,band_3,text1, band_lose, band_win
         """
         Déssine les éléments du jeu
         """
@@ -304,24 +316,15 @@ class Game(pygame.sprite.Sprite):
         
         # Afficher l'écran de défaite
         if self.lose == True:
-            band = pygame.Surface((1200, 200), pygame.SRCALPHA)
-            band_color = (0, 0, 0, 128)  # Bande Noir à 50% de transparence
-            band.fill(band_color)
-            text = pygame.font.Font(None, 100).render("Defeat will only make you more powerful", True, (255,255,255))
-            self.fenetre.blit(band, (0, 325))
+            self.fenetre.blit(band_lose, (0, 325))
             self.fenetre.blit(self.lose_image, (self.lose_image_x, self.lose_image_y))
-            self.fenetre.blit(text,(600,350))
+            self.fenetre.blit(text_lose,text_rect_lose)
 
         # Afficher l'écran de victoire
         if self.win == True:
-            band = pygame.Surface((1200, 200), pygame.SRCALPHA)
-            band_color = (0, 0, 0, 128)  # Bande Noir à 50% de transparence
-            text_end = pygame.font.Font(None, 100).render("Well play, you are the best ", True, (255, 255, 255))
-            band.fill(band_color)
-            self.fenetre.blit(band, (0, 325))
+            self.fenetre.blit(band_win, (0, 325))
             self.fenetre.blit(self.win_image, (self.win_image_x, self.win_image_y))
-            self.fenetre.blit(text_end,(600,350))
-
+            self.fenetre.blit(text_win,text_rect_win)
 
         pygame.display.update()
 

@@ -34,41 +34,42 @@ class Projectile(pygame.sprite.Sprite):
     # METHODE: permet le déplacement du projectile | position initiale: opérateur position
                                                 #  | position finale: infecté ciblé position (attribut target)
     def move(self):
+        if self.target:
+            # Détermine le mouvement à effectuer [format (x,y)]
+            self.movement = self.target.position - self.position
+            distance = self.movement.length()
 
-        # Détermine le mouvement à effectuer [format (x,y)]
-        self.movement = self.target.position - self.position
-        distance = self.movement.length()
+            if distance > 0: # Vérifie si la distance à parcourir n'est pas égale à 0
 
-        if distance > 0: # Vérifie si la distance à parcourir n'est pas égale à 0
+                # modifie la position de l'infecté selon sa vitesse
+                if distance >= self.speed:
+                    self.position += self.movement.normalize() * self.speed
+                # dans le cas où la distance est inférieure à la vitesse, pour éviter que le projectile ne soit immobilisé.
+                else:
+                    self.position += self.movement.normalize() * distance
 
-            # modifie la position de l'infecté selon sa vitesse
-            if distance >= self.speed:
-                self.position += self.movement.normalize() * self.speed
-            # dans le cas où la distance est inférieure à la vitesse, pour éviter que le projectile ne soit immobilisé.
-            else:
-                self.position += self.movement.normalize() * distance
-
-            self.rect.center = self.position # met à jour le centre de l'image
+                self.rect.center = self.position # met à jour le centre de l'image
 
 
     # METHODE: modifie l'angle de l'image selon sa direction (emplacement de sa cible)
     def rotation(self):
-        # Calcule la distance entre le prochain waypoint et l'ennemie
-        distance = self.target.position - self.position
+        if self.target:
+            # Calcule la distance entre le prochain waypoint et l'ennemie
+            distance = self.target.position - self.position
 
-        # Détermine l'angle de rotation selon la distance (vers la direction où se trouve le prochain waypoint)
-        angle = math.degrees(math.atan2(-distance[1],distance[0]))
-        self.image = pygame.transform.rotate(self.original_image,angle) # Effectue la rotation de l'image selon l'angle
+            # Détermine l'angle de rotation selon la distance (vers la direction où se trouve le prochain waypoint)
+            angle = math.degrees(math.atan2(-distance[1],distance[0]))
+            self.image = pygame.transform.rotate(self.original_image,angle) # Effectue la rotation de l'image selon l'angle
 
-        # Mise à jour des et coordonnées de l'image
-        self.rect = self.image.get_rect()
-        self.rect.center = self.position
-
+            # Mise à jour des et coordonnées de l'image
+            self.rect = self.image.get_rect()
+            self.rect.center = self.position
 
     # METHODE: Détecte s'il y a collision avec sa cible
     def detect_collision(self):
-        if self.rect.colliderect(self.target.rect):
-            self.collide = True
+        if self.target:
+            if self.rect.colliderect(self.target.rect):
+                self.collide = True
 
 
 

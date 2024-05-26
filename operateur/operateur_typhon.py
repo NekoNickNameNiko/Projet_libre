@@ -100,7 +100,7 @@ class typhon(operateur_base):
 
         #Condition qui vérifie quelle animations lancer
         if self.animation_count_begin == len(self.typhon_imgs_begin_attack)-1:
-            self.fire(self.animation_count,12)
+            self.fire(self.animation_count,10)
             #on verifie l'angle entre l'operateur et l'infecté puis on utilise les images destinée
             if acos(abs(en_x - self.x) / abs(sqrt((en_x - self.x)**2 + (en_y - self.y)**2))) < 1/2:
                 fenetre.blit(self.img_front, (self.x-pygame.Surface.get_width(self.img_front)//2+self.add_1, self.y-pygame.Surface.get_height(self.img_front)//2-25))

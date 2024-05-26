@@ -6,7 +6,7 @@ start_btn = pygame.transform.scale(pygame.image.load(os.path.join("game_img/game
 
 class MainMenu:
     def __init__(self, fenetre):
-        self.width = 1350
+        self.width = 1200
         self.height = 700
         self.bg = pygame.image.load(os.path.join("game_img/game_asset", "start_menu_bg.jpg"))
         self.bg = pygame.transform.scale(self.bg, (self.width, self.height))
