@@ -1,5 +1,4 @@
 import pygame
-import pygame_gui
 import os
 import numpy as np
 from random import randint
@@ -10,9 +9,6 @@ from infected.Enemy_Data import*
 from projectile.Class_Projectile import*
 from projectile.Projectile_Data import*
 from menu import Menu
-
-# Création d'un gestionnaire d'interface (pygame GUI)
-manager_ui = pygame_gui.UIManager((1200, 650))
 
 # Initialise les Infected
 infected_group = pygame.sprite.Group()
@@ -130,7 +126,6 @@ class Game(pygame.sprite.Sprite):
 
         dp_gain = 0
         while run:
-
             #Vérifie si le chargement est terminée
             if self.loading_finish:
 
@@ -148,7 +143,6 @@ class Game(pygame.sprite.Sprite):
                     self.dp += 1
                     dp_gain +=2
 
-                manager_ui.update(clock.tick(60) / 1000.0)  # FPS 60 images par seconde
                 pygame.display.set_caption('Arknight fps '+str(round(clock.get_fps(),0))) #change le nom de la fenêtre avec les fps
 
                 # Vérifie si on bouge un object ou non
