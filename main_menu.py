@@ -4,6 +4,11 @@ import os
 
 start_btn = pygame.transform.scale(pygame.image.load(os.path.join("game_img/game_asset", "button_play.png")).convert_alpha(),(300,80))
 
+text_accueil = pygame.font.Font(None, 100).render("Lost World", True, (255, 255, 255))
+text_rect_accueil = text_accueil.get_rect()
+text_rect_accueil.center = 1200/2, 425
+
+
 class MainMenu:
     def __init__(self, fenetre):
         self.width = 1200
@@ -36,6 +41,7 @@ class MainMenu:
         pygame.quit()
 
     def draw(self):
+        self.fenetre.blit(text_accueil,text_rect_accueil)
         self.fenetre.blit(self.bg, (0,0))
         self.fenetre.blit(start_btn, (self.btn[0], self.btn[1]))
         pygame.display.update()
