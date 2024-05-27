@@ -41,7 +41,7 @@ class MainMenu:
         pygame.quit()
 
     def draw(self):
-        self.fenetre.blit(text_accueil,text_rect_accueil)
         self.fenetre.blit(self.bg, (0,0))
+        self.fenetre.blit(text_accueil,text_rect_accueil)
         self.fenetre.blit(start_btn, (self.btn[0], self.btn[1]))
         pygame.display.update()
